@@ -68,8 +68,8 @@ c1, c2 = st.columns(2)
 # (좌) 급여인상율과 퇴직율 (정수%로 라운딩 후 라인)
 if "급여증가분백분율" in df.columns:
 #    tmp = df[["급여증가분백분율","퇴직"]].dropna().copy()
-    tmp["인상률(%)"] = tmp["급여증가분백분율"].round().astype(int)
-    sal = tmp.groupby("인상률(%)")["퇴직"].mean()*100
+    df["인상률(%)"] = df["급여증가분백분율"].round().astype(int)
+    sal = df.groupby("인상률(%)")["퇴직"].mean()*100
     with c1:
         st.subheader("💰 급여인상율과 퇴직율")
         fig2, ax2 = plt.subplots(figsize=(6.5,3.5))
@@ -90,3 +90,4 @@ if col_name in df.columns:
         ax3.set_ylabel("퇴직율(%)"); 
         ax3.bar_label(ax3.containers[0], fmt="%.1f")
         st.pyplot(fig3)
+
